@@ -1,0 +1,17 @@
+{
+  "name": "Flight Recorder",
+  "short_name": "Black Box",
+  "description": "Local timeline of apps, downloads, builds, and spikes.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#6eadd4",
+  "theme_color": "#6eadd4",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

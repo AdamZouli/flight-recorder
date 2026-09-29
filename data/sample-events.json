@@ -1,0 +1,139 @@
+{
+  "events": [
+    {
+      "id": "demo-01",
+      "ts": 1710003600000,
+      "kind": "app.open",
+      "title": "Cursor started",
+      "detail": { "name": "Cursor", "workingSet": 420000000 },
+      "pid": 4412,
+      "severity": "info"
+    },
+    {
+      "id": "demo-02",
+      "ts": 1710003660000,
+      "kind": "app.focus",
+      "title": "Focused: Cursor",
+      "detail": { "name": "Cursor" },
+      "pid": 4412,
+      "severity": "info"
+    },
+    {
+      "id": "demo-03",
+      "ts": 1710003900000,
+      "kind": "app.open",
+      "title": "chrome started",
+      "detail": { "name": "chrome", "workingSet": 890000000 },
+      "pid": 8821,
+      "severity": "info"
+    },
+    {
+      "id": "demo-04",
+      "ts": 1710004020000,
+      "kind": "download",
+      "title": "Received report.pdf",
+      "detail": { "path": "C:\\Users\\demo\\Downloads\\report.pdf" },
+      "pid": null,
+      "severity": "info"
+    },
+    {
+      "id": "demo-05",
+      "ts": 1710004500000,
+      "kind": "app.open",
+      "title": "node started",
+      "detail": { "name": "node", "workingSet": 120000000 },
+      "pid": 9104,
+      "severity": "info"
+    },
+    {
+      "id": "demo-06",
+      "ts": 1710004560000,
+      "kind": "build",
+      "title": "node @ 92% for 12s",
+      "detail": { "name": "node", "cpuPercent": 92, "seconds": 12 },
+      "pid": 9104,
+      "severity": "warn"
+    },
+    {
+      "id": "demo-07",
+      "ts": 1710004700000,
+      "kind": "cpu.spike",
+      "title": "chrome @ 88% for 9s",
+      "detail": { "name": "chrome", "cpuPercent": 88, "seconds": 9 },
+      "pid": 8821,
+      "severity": "warn"
+    },
+    {
+      "id": "demo-08",
+      "ts": 1710005100000,
+      "kind": "mem.spike",
+      "title": "chrome working set 12.1 GB",
+      "detail": { "name": "chrome", "workingSet": 12992276070 },
+      "pid": 8821,
+      "severity": "warn"
+    },
+    {
+      "id": "demo-09",
+      "ts": 1710005400000,
+      "kind": "error.user",
+      "title": "Marked: deploy felt wrong",
+      "detail": { "note": "Fan spun up right after npm test" },
+      "pid": null,
+      "severity": "warn"
+    },
+    {
+      "id": "demo-10",
+      "ts": 1710005520000,
+      "kind": "crash",
+      "title": "Windows Error Reporting started",
+      "detail": { "name": "WerFault" },
+      "pid": 12044,
+      "severity": "error"
+    },
+    {
+      "id": "demo-11",
+      "ts": 1710005528000,
+      "kind": "app.close",
+      "title": "Code.exe exited",
+      "detail": { "name": "Code", "lastWorkingSet": 2100000000 },
+      "pid": 3340,
+      "severity": "info"
+    },
+    {
+      "id": "demo-12",
+      "ts": 1710005800000,
+      "kind": "download",
+      "title": "Received node-v22.msi",
+      "detail": { "path": "C:\\Users\\demo\\Downloads\\node-v22.msi" },
+      "pid": null,
+      "severity": "info"
+    },
+    {
+      "id": "demo-13",
+      "ts": 1710006100000,
+      "kind": "app.focus",
+      "title": "Focused: chrome",
+      "detail": { "name": "chrome" },
+      "pid": 8821,
+      "severity": "info"
+    },
+    {
+      "id": "demo-14",
+      "ts": 1710006400000,
+      "kind": "build",
+      "title": "cargo @ 81% for 18s",
+      "detail": { "name": "cargo", "cpuPercent": 81, "seconds": 18 },
+      "pid": 1550,
+      "severity": "warn"
+    },
+    {
+      "id": "demo-15",
+      "ts": 1710006800000,
+      "kind": "app.close",
+      "title": "node exited",
+      "detail": { "name": "node" },
+      "pid": 9104,
+      "severity": "info"
+    }
+  ]
+}

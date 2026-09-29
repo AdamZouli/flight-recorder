@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Flight Recorder">
+  <rect width="128" height="128" rx="28" fill="#6eadd4"/>
+  <circle cx="86" cy="36" r="16" fill="#fff6d8"/>
+  <ellipse cx="40" cy="48" rx="28" ry="14" fill="#f7f1e6"/>
+  <ellipse cx="58" cy="42" rx="16" ry="14" fill="#f7f1e6"/>
+  <rect x="28" y="62" width="72" height="40" rx="12" fill="#f7f1e6"/>
+  <circle cx="64" cy="82" r="10" fill="none" stroke="#c44532" stroke-width="3"/>
+  <path d="M64 82 V75" stroke="#1c1630" stroke-width="2"/>
+</svg>

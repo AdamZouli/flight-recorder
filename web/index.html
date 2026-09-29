@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#6eadd4" />
+    <meta name="description" content="Local black box timeline for this PC" />
+    <title>Flight Recorder</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css?v=6" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,560;0,9..144,680;1,9..144,560&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="sky" aria-hidden="true">
+      <div class="cloud cloud-a"></div>
+      <div class="cloud cloud-b"></div>
+      <div class="moon"></div>
+    </div>
+
+    <div id="app" class="folio">
+      <header class="mast">
+        <div>
+          <p class="eyebrow">
+            <span id="live" class="eye" aria-hidden="true"></span>
+            <span id="status-label">Connecting</span>
+          </p>
+          <h1>Flight Recorder</h1>
+          <p class="lede">The last hours of this machine, kept on the machine.</p>
+        </div>
+        <div class="mast-actions">
+          <button type="button" id="btn-export" class="text-btn">Export 24h</button>
+          <button type="button" id="btn-settings" class="text-btn">Settings</button>
+        </div>
+      </header>
+
+      <section class="controls" aria-label="Find moments">
+        <label class="search">
+          <span class="sr-only">Search the timeline</span>
+          <input id="q" type="search" placeholder="Search a process, file, or note" autocomplete="off" />
+        </label>
+        <div class="segment" role="group" aria-label="Time window">
+          <button type="button" data-hours="2" class="seg on">2 hours</button>
+          <button type="button" data-hours="24" class="seg">24 hours</button>
+          <button type="button" data-hours="168" class="seg">7 days</button>
+        </div>
+        <div class="chips" id="chips" role="group" aria-label="Event kinds"></div>
+        <p class="count" id="count" role="status"></p>
+      </section>
+
+      <main id="timeline" class="timeline" aria-live="polite"></main>
+    </div>
+
+    <button type="button" id="mark" class="pin">Mark a moment</button>
+
+    <aside id="detail" class="sheet hidden" hidden>
+      <button type="button" class="scrim" data-close="detail" aria-label="Close details"></button>
+      <div class="sheet-card" role="dialog" aria-labelledby="detail-title">
+        <button type="button" class="text-btn close" id="close-detail">Close</button>
+        <div id="detail-body"></div>
+      </div>
+    </aside>
+
+    <aside id="composer" class="sheet hidden" hidden>
+      <button type="button" class="scrim" data-close="composer" aria-label="Close"></button>
+      <form class="sheet-card" id="pin-form">
+        <button type="button" class="text-btn close" data-close="composer">Close</button>
+        <p class="eyebrow">A pin in time</p>
+        <h2 id="composer-title">What just happened?</h2>
+        <textarea id="note" rows="4" maxlength="240" placeholder="The fan spun up. The deploy felt wrong."></textarea>
+        <div class="sheet-actions">
+          <button type="submit" class="pin pin-inline" id="save-pin">Drop the pin</button>
+        </div>
+        <p class="error" id="pin-error"></p>
+      </form>
+    </aside>
+
+    <aside id="settings" class="sheet hidden" hidden>
+      <button type="button" class="scrim" data-close="settings" aria-label="Close settings"></button>
+      <div class="sheet-card" role="dialog" aria-labelledby="settings-title">
+        <button type="button" class="text-btn close" id="close-settings">Close</button>
+        <p class="eyebrow">On this PC</p>
+        <h2 id="settings-title">Settings</h2>
+        <p class="hint" id="meta-line"></p>
+
+        <fieldset>
+          <legend>Keep events for</legend>
+          <div class="segment" id="retention-seg">
+            <button type="button" data-retention="24h">24 hours</button>
+            <button type="button" data-retention="7d">7 days</button>
+            <button type="button" data-retention="30d">30 days</button>
+          </div>
+        </fieldset>
+
+        <button type="button" id="paused" class="toggle" aria-pressed="false">
+          <span class="toggle-kicker">Recording</span>
+          <span id="paused-label">On</span>
+        </button>
+
+        <button type="button" id="background" class="toggle" aria-pressed="false">
+          <span class="toggle-kicker">Background processes</span>
+          <span id="background-label">Ignored</span>
+        </button>
+        <p class="hint">Off by default, so Windows services such as svchost stay out of the timeline.</p>
+
+        <section class="pair-block">
+          <p class="eyebrow">Phone on the same Wi-Fi</p>
+          <p class="pair-code" id="pair-line">Open settings on the PC to see the code.</p>
+          <button type="button" id="btn-pair" class="text-btn">New pairing code</button>
+        </section>
+
+        <section class="danger-zone">
+          <button type="button" id="btn-wipe" class="text-btn danger">Erase the timeline</button>
+          <div id="wipe-confirm" class="wipe-confirm hidden" hidden>
+            <p>This deletes every event stored on this PC.</p>
+            <button type="button" id="btn-wipe-yes" class="pin pin-inline danger-fill">Erase everything</button>
+          </div>
+        </section>
+        <p class="legal">No keystrokes, clipboard, or file contents. The phone only views this PC.</p>
+      </div>
+    </aside>
+
+    <aside id="pair" class="sheet hidden" hidden>
+      <div class="sheet-card pair-card" role="dialog" aria-labelledby="pair-title">
+        <p class="eyebrow">Same room, same network</p>
+        <h2 id="pair-title">Pair this phone</h2>
+        <p class="hint">Type the code shown in the PC console, or in Settings on localhost.</p>
+        <form id="pair-form">
+          <label class="sr-only" for="pair-code">Pairing code</label>
+          <input id="pair-code" maxlength="8" placeholder="A2B9K3" autocomplete="off" autocapitalize="characters" />
+          <button type="submit" class="pin pin-inline">Connect</button>
+        </form>
+        <p class="error" id="pair-error"></p>
+      </div>
+    </aside>
+
+    <script src="/app.js?v=6" type="module"></script>
+  </body>
+</html>
